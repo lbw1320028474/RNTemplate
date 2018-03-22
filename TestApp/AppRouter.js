@@ -24,6 +24,8 @@ import {
     Lightbox,
 } from 'react-native-router-flux';
 import FastImage from 'react-native-fast-image'
+import { observable, computed, action } from 'mobx'
+import { observer } from 'mobx-react'
 import Page1 from './Pages/Page1'
 import Page2 from './Pages/Page2'
 import Page3 from './Pages/Page3'
@@ -158,7 +160,11 @@ const mRouter = (...props) => (
     <Router
         backAndroidHandler={onBackPress}
     >
-        <Stack hideNavBar key='rootTabView' headerMode='screen' >
+        <Stack
+            transitionConfig={() => ({
+                screenInterpolator: CardStackStyleInterpolator.forHorizontal
+            })}
+            hideNavBar key='rootTabView' headerMode='screen' >
             <Tabs
                 animationEnabled={false}
                 key='tabBar'
