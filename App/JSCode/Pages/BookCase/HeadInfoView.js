@@ -125,11 +125,7 @@ export default class HeadInfoView extends Component {
 
     render() {
         let that = this;
-        // var spin = null;
-        // spin = this.state.translateY.interpolate({
-        //     inputRange: [0, 1],
-        //     outputRange: [Dpi.d(530), 0]
-        // })
+
         that.lastReadBook = that.props.lastBook;
         return (
             <View style={{ height: Dpi.d(450), width: AppUtils.size.width }}>
@@ -140,7 +136,6 @@ export default class HeadInfoView extends Component {
                 {
                     that._renderAnimView()
                 }
-
                 <View
                     style={{ flexDirection: 'row', alignItems: 'center', position: 'absolute', left: Dpi.d(30), top: Dpi.d(150) }}
                 >

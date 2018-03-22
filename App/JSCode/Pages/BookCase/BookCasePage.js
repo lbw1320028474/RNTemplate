@@ -22,7 +22,7 @@ import BookCaseDataBean from './Data/BookCaseDataBean';
 import LastReadBean from './Data/LastReadBean'
 import ActiveView from './ActiveView'
 import AppTheme from '../../Themes/AppTheme';
-import BookCaseItem from './BookCaseItem'
+import BookCaseList from './BookCaseList'
 /**
  * 书架页面
  */
@@ -56,26 +56,7 @@ export default class BookCasePage extends Component {
         >
           <HeadInfoView lastBook={that.bookCaseData.lastReadBook} />
           <ActiveView></ActiveView>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-            <BookCaseItem></BookCaseItem>
-          </View>
+          <BookCaseList data={this.bookCaseData.bookCaseList} />
         </ScrollView>
         <MyNavigationBar
           ref={ref => this.myNavigationBarRef = ref}

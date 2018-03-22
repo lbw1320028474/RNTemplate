@@ -18,4 +18,7 @@ export default class ImageResource {
     static bookCaseAnimimage1 = require('./bookcase_anim_image_01.png')
     static bookCaseAnimimage2 = require('./bookcase_anim_image_02.png')
     static bookCaseAnimimage3 = require('./bookcase_anim_image_03.png')
+
+    static bookCaseItemNormal = require('./bookcase_item_normal.png')
+    static bookCaseItemSelected = require('./bookcase_item_selected.png')
 }
