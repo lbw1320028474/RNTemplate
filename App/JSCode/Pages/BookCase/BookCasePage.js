@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 //import { NavigationBar } from 'teaset'
 import { observable, computed, action, autorun } from 'mobx'
-import { observer } from 'mobx-react/native'
+import { observer, Provider } from 'mobx-react/native'
 import FastImage from 'react-native-fast-image'
 import ImageResource from '../../../Resource/ImageResource'
 import HeadInfoView from './HeadInfoView'
@@ -45,23 +45,21 @@ export default class BookCasePage extends Component {
   render() {
     let that = this;
     return (
-      <View style={{ flex: 1, backgroundColor: AppTheme.bgColor }}>
-        <ScrollView
-          style={{ flex: 1 }}
-          onScroll={(event) => {
-            if (that.myNavigationBarRef) {
-              that.myNavigationBarRef.scrollY(event.nativeEvent.contentOffset.y);
-            }
-          }}
-        >
-          <HeadInfoView lastBook={that.bookCaseData.lastReadBook} />
-          <ActiveView></ActiveView>
-          <BookCaseList data={this.bookCaseData.bookCaseList} />
-        </ScrollView>
-        <MyNavigationBar
-          ref={ref => this.myNavigationBarRef = ref}
-        ></MyNavigationBar>
-      </View>
+      <Provider rootStore={this.bookCaseData}>
+        <View style={{ flex: 1, backgroundColor: AppTheme.bgColor }}>
+          <ScrollView
+            style={{ flex: 1 }}
+            onScroll={(event) => {
+              that.bookCaseData.scrollViewScrollY = event.nativeEvent.contentOffset.y;
+            }}
+          >
+            <HeadInfoView lastBook={that.bookCaseData.lastReadBook} />
+            <ActiveView></ActiveView>
+            <BookCaseList data={this.bookCaseData.bookCaseList} />
+          </ScrollView>
+          <MyNavigationBar></MyNavigationBar>
+        </View>
+      </Provider>
     );
   }
 }

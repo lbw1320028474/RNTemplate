@@ -12,7 +12,7 @@ import {
     Easing
 } from 'react-native'
 import { observable, computed, action, autorun } from 'mobx'
-import { observer } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react/native'
 import { NavigationBar } from 'teaset'
 import FastImage from 'react-native-fast-image'
 import ImageResource from '../../../Resource/ImageResource'
@@ -23,6 +23,7 @@ import AppTheme from '../../Themes/AppTheme';
 /**
  * 书架页面
  */
+@inject('rootStore')
 @observer
 export default class ActiveView extends Component {
     constructor(props) {
@@ -68,7 +69,7 @@ export default class ActiveView extends Component {
                     borderRadius: Dpi.d(30)
                 }}
             >
-                <FastImage style={{ tintColor: AppTheme.hightLightColor, width: Dpi.d(30), height: Dpi.d(30) }} source={ImageResource.searchIcon} ></FastImage>
+                <FastImage tintColor={AppTheme.hightLightColor} style={{ width: Dpi.d(30), height: Dpi.d(30) }} source={ImageResource.searchIcon} ></FastImage>
                 <Text style={{ color: AppTheme.hightLightColor }}>签到送纸质书啦！！！</Text>
                 <Text style={{ padding: Dpi.d(5), fontSize: Dpi.s(24), backgroundColor: AppTheme.bgColor, color: AppTheme.hightLightColor, borderRadius: Dpi.d(20) }}>去签到</Text>
             </View>

@@ -63,6 +63,12 @@ export default class BookCaseDataBean {
     }
 
     /**
+     * ScrollView滑动距离
+     */
+    @observable
+    scrollViewScrollY = 0;
+
+    /**
      * 是否全选
      */
     @observable
@@ -87,6 +93,23 @@ export default class BookCaseDataBean {
     lastReadBook = new LastReadBean();
 
 
+    @observable inSelect = false;       //是否处于编辑状态
+
+    /**
+     * 
+     * @param {*} isInSelect 修改是否处于编辑状态，默认是false
+     */
+    @action
+    setInSelect(isInSelect = false) {
+        this.inSelect = isInSelect;
+        if (isInSelect) {
+            if (this.bookCaseList && this.bookCaseList.length > 0) {
+                this.bookCaseList.map((item, index) => {
+                    item.isSelected = false;
+                })
+            }
+        }
+    }
 }
 
 

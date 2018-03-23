@@ -7,13 +7,14 @@ import {
 } from 'react-native'
 
 import { observable, computed, action, autorun } from 'mobx'
-import { observer } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react/native'
 
 import FastImage from 'react-native-fast-image'
 import ImageResource from '../../../Resource/ImageResource'
 import Dpi from '../../Utils/Dpi'
 import AppTheme from '../../../../TestApp/Themes/AppTheme';
-
+@inject('rootStore')
+@observer
 export default class MyNavigationBar extends Component {
     bgOpacity = 0;
     viewTintColor = AppTheme.mainColor
@@ -23,6 +24,17 @@ export default class MyNavigationBar extends Component {
         super(props);
         this.topBarBgRef;
         this.searchRef;
+
+    }
+
+    componentDidMount() {
+        let that = this;
+        /**
+         * 自动在滑动后运行
+         */
+        autorun(() => {
+            that.scrollY(that.props.rootStore.scrollViewScrollY);
+        })
     }
 
     scrollY(offY) {

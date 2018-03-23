@@ -12,17 +12,18 @@ import {
     Easing
 } from 'react-native'
 import { observable, computed, action, autorun } from 'mobx'
-import { observer } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react/native'
 import { NavigationBar } from 'teaset'
 import FastImage from 'react-native-fast-image'
 import ImageResource from '../../../Resource/ImageResource'
 import Dpi from '../../Utils/Dpi'
 import AppUtils from '../../Utils/AppUtils'
-import AppTheme from '../../Themes/AppTheme';
+import AppTheme from '../../Themes/AppTheme'
 //import NavigationBar from './NavigationBar'
 /**
  * 书架页面
  */
+@inject('rootStore')
 @observer
 export default class HeadInfoView extends Component {
     constructor(props) {
@@ -41,7 +42,7 @@ export default class HeadInfoView extends Component {
             that.state.translateX1, {
                 easing: Easing.out(Easing.linear),// 一个用于定义曲线的渐变函数
                 toValue: -1 * AppUtils.size.width,
-                duration: 13000,// 动画持续的时间（单位是毫秒），默认为500
+                duration: 11000,// 动画持续的时间（单位是毫秒），默认为500
                 // delay: 0,// 在一段时间之后开始动画（单位是毫秒），默认为0。
                 useNativeDriver: true, // <-- 加上这一行
             }).start((call) => {
@@ -56,7 +57,7 @@ export default class HeadInfoView extends Component {
             that.state.translateX2, {
                 easing: Easing.out(Easing.linear),// 一个用于定义曲线的渐变函数
                 toValue: -1 * AppUtils.size.width,
-                duration: 17000,// 动画持续的时间（单位是毫秒），默认为500
+                duration: 15000,// 动画持续的时间（单位是毫秒），默认为500
                 // delay: 0,// 在一段时间之后开始动画（单位是毫秒），默认为0。
                 useNativeDriver: true, // <-- 加上这一行
             }).start((call) => {
@@ -71,7 +72,7 @@ export default class HeadInfoView extends Component {
             that.state.translateX3, {
                 easing: Easing.out(Easing.linear),// 一个用于定义曲线的渐变函数
                 toValue: -1 * AppUtils.size.width,
-                duration: 21000,// 动画持续的时间（单位是毫秒），默认为500
+                duration: 19000,// 动画持续的时间（单位是毫秒），默认为500
                 // delay: 0,// 在一段时间之后开始动画（单位是毫秒），默认为0。
                 useNativeDriver: true, // <-- 加上这一行
             }).start((call) => {
@@ -90,13 +91,12 @@ export default class HeadInfoView extends Component {
         let that = this;
         return (
             <View style={{ position: 'absolute', bottom: 0 }}>
-
-
                 <Animated.View
                     style={{ position: 'absolute', bottom: 0, transform: [{ translateX: that.state.translateX3 }] }}
                 >
                     <FastImage
-                        style={{ height: Dpi.d(50), width: AppUtils.size.width * 2, resizeMode: 'stretch' }}
+                        resizeMode={FastImage.resizeMode.stretch}
+                        style={{ height: Dpi.d(50), width: AppUtils.size.width * 2 }}
                         source={ImageResource.bookCaseAnimimage3}>
 
                     </FastImage>
@@ -105,7 +105,8 @@ export default class HeadInfoView extends Component {
                     style={{ position: 'absolute', bottom: 0, transform: [{ translateX: that.state.translateX2 }] }}
                 >
                     <FastImage
-                        style={{ height: Dpi.d(50), width: AppUtils.size.width * 2, resizeMode: 'stretch' }}
+                        resizeMode={FastImage.resizeMode.stretch}
+                        style={{ height: Dpi.d(50), width: AppUtils.size.width * 2 }}
                         source={ImageResource.bookCaseAnimimage2}>
 
                     </FastImage>
@@ -114,7 +115,9 @@ export default class HeadInfoView extends Component {
                     style={{ position: 'absolute', bottom: 0, transform: [{ translateX: that.state.translateX1 }] }}
                 >
                     <FastImage
-                        style={{ height: Dpi.d(50), width: AppUtils.size.width * 2, resizeMode: 'stretch' }}
+
+                        resizeMode={FastImage.resizeMode.stretch}
+                        style={{ height: Dpi.d(50), width: AppUtils.size.width * 2 }}
                         source={ImageResource.bookCaseAnimimage1}>
                     </FastImage>
                 </Animated.View>
@@ -130,6 +133,7 @@ export default class HeadInfoView extends Component {
         return (
             <View style={{ height: Dpi.d(450), width: AppUtils.size.width }}>
                 <FastImage
+                    resizeMode={FastImage.resizeMode.stretch}
                     style={{ height: Dpi.d(450), width: AppUtils.size.width }}
                     source={ImageResource.bookCaseHeadBg}
                 />
@@ -140,16 +144,17 @@ export default class HeadInfoView extends Component {
                     style={{ flexDirection: 'row', alignItems: 'center', position: 'absolute', left: Dpi.d(30), top: Dpi.d(150) }}
                 >
                     <FastImage
-                        style={{ height: Dpi.d(250), width: Dpi.d(180), resizeMode: 'stretch' }}
-                        source={ImageResource.testBookCover}
+                        resizeMode={FastImage.resizeMode.stretch}
+                        style={{ height: Dpi.d(250), width: Dpi.d(180), borderColor: AppTheme.mainColor, borderRadius: Dpi.d(4), borderWidth: Dpi.d(3) }}
+                        source={{ uri: that.lastReadBook.bookCover }}
                     >
 
                     </FastImage>
                     <View
-                        style={{ padding: Dpi.d(20) }}
+                        style={{ padding: Dpi.d(20), marginLeft: Dpi.d(40) }}
                     >
-                        <Text style={{ color: AppTheme.mainColor, fontSize: Dpi.s(30) }}>{that.lastReadBook.bookName}</Text>
-                        <Text style={{ color: AppTheme.mainColor, fontSize: Dpi.s(28), marginTop: Dpi.d(30) }}>{that.lastReadBook.lastChapterName} 继续阅读</Text>
+                        <Text style={{ color: AppTheme.mainColor, fontSize: Dpi.s(34) }}>{that.lastReadBook.bookName}</Text>
+                        <Text style={{ color: AppTheme.mainColor, fontSize: Dpi.s(25), marginTop: Dpi.d(50) }}>{that.lastReadBook.lastChapterName} 继续阅读</Text>
                     </View>
                 </View>
 
