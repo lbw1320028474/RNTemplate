@@ -15,7 +15,6 @@ import {
 } from 'react-native'
 import { observable, computed, action, autorun } from 'mobx'
 import { observer, inject } from 'mobx-react/native'
-import { NavigationBar } from 'teaset'
 import FastImage from 'react-native-fast-image'
 import ImageResource from '../../../Resource/ImageResource'
 import Dpi from '../../Utils/Dpi'
@@ -58,7 +57,7 @@ export default class BookCaseItem extends Component {
                 let lastBook = new LastReadBean();
                 lastBook.bookCover = itemData.bookCover;
                 lastBook.bookName = itemData.bookName;
-                that.props.rootStore.lastReadBook.setLastBookInfo(lastBook);
+                that.props.rootStore.bookCaseDataBean.lastReadBook.setLastBookInfo(lastBook);
                 if (timer) {
                     clearInterval(timer)
                 }
@@ -73,16 +72,21 @@ export default class BookCaseItem extends Component {
         let that = this;
         that.itemData = that.props.data;
         return (
+            // <View>
+            //     <Text>雷帮文</Text>
+            // </View>
             <TouchableOpacity
                 onLongPress={() => {
                     if (that.props.rootStore.inSelect) {
-                        that.props.rootStore.setInSelect(false)
+                        that.props.rootStore.bookCaseDataBean.setInSelect(false)
+                        that.props.rootStore.isHiddenNavbar = false;
                     } else {
-                        that.props.rootStore.setInSelect(true)
+                        that.props.rootStore.bookCaseDataBean.setInSelect(true)
+                        that.props.rootStore.isHiddenNavbar = true;
                     }
                 }}
                 onPress={() => {
-                    if (that.props.rootStore.inSelect) {
+                    if (that.props.rootStore.bookCaseDataBean.inSelect) {
                         that.itemData.isSelected = !(that.itemData.isSelected);
                     } else {
                         that._setLastReadBook(that.itemData);
@@ -103,7 +107,7 @@ export default class BookCaseItem extends Component {
                 >
                     <FastImage
                         resizeMode={FastImage.resizeMode.stretch}
-                        opacity={(that.props.rootStore.inSelect) ? 0.4 : 1}
+                        opacity={(that.props.rootStore.bookCaseDataBean.inSelect) ? 0.4 : 1}
                         onError={() => {
                             alert('加载失败')
                         }}
@@ -116,7 +120,7 @@ export default class BookCaseItem extends Component {
                 </BoxShadow>
                 <Text style={{ fontSize: Dpi.s(25), color: AppTheme.mainTextColor, marginTop: Dpi.d(10) }}>{that.itemData.bookName}</Text>
                 {
-                    (that.props.rootStore.inSelect) ?
+                    (that.props.rootStore.bookCaseDataBean.inSelect) ?
                         <FastImage
                             resizeMode={FastImage.resizeMode.stretch}
                             style={{

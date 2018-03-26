@@ -3,7 +3,8 @@ import { NavigationBar } from 'teaset'
 import {
     Text,
     View,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native'
 
 import { observable, computed, action, autorun } from 'mobx'
@@ -13,6 +14,7 @@ import FastImage from 'react-native-fast-image'
 import ImageResource from '../../../Resource/ImageResource'
 import Dpi from '../../Utils/Dpi'
 import AppTheme from '../../../../TestApp/Themes/AppTheme';
+import { Actions } from 'react-native-router-flux';
 @inject('rootStore')
 @observer
 export default class MyNavigationBar extends Component {
@@ -33,7 +35,7 @@ export default class MyNavigationBar extends Component {
          * 自动在滑动后运行
          */
         autorun(() => {
-            that.scrollY(that.props.rootStore.scrollViewScrollY);
+            that.scrollY(that.props.rootStore.bookCaseDataBean.scrollViewScrollY);
         })
     }
 
@@ -51,13 +53,16 @@ export default class MyNavigationBar extends Component {
         } else {
             that.viewTintColor = AppTheme.mainColor;// + '' + ((1 - that.bgOpacity) * 99);
         }
-        that.topBarBgRef.setNativeProps({
-            opacity: that.bgOpacity
-        })
-
-        that.searchRef.setNativeProps({
-            style: { tintColor: that.viewTintColor }
-        })
+        if (that.topBarBgRef) {
+            that.topBarBgRef.setNativeProps({
+                opacity: that.bgOpacity
+            })
+        }
+        if (that.searchRef) {
+            that.searchRef.setNativeProps({
+                style: { tintColor: that.viewTintColor }
+            })
+        }
         //  this.viewTintColor = 'rgba(35, 179, 130,' + this.bgOpacity + ')'
 
     }
@@ -67,17 +72,22 @@ export default class MyNavigationBar extends Component {
         return (
             <NavigationBar
                 statusBarColor='#00000020'
-                statusBarStyle='light-content'
-                type='ios'
                 statusBarInsets={true}
                 style={{ backgroundColor: '#00000000' }}
                 title='书架'
                 rightView={
-                    <Image
-                        ref={ref => that.searchRef = ref}
-                        source={ImageResource.searchIcon}
-                        style={{ tintColor: AppTheme.mainColor, height: Dpi.d(40), width: Dpi.d(40) }}
-                    />
+                    <TouchableOpacity
+                        onPress={() => {
+                            Actions.BookCategoryPage();
+                        }}
+                    >
+                        <Image
+
+                            ref={ref => that.searchRef = ref}
+                            source={ImageResource.searchIcon}
+                            style={{ tintColor: AppTheme.mainColor, height: Dpi.d(40), width: Dpi.d(40) }}
+                        />
+                    </TouchableOpacity>
                 }
                 background={
                     <Image

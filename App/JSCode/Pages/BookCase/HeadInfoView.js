@@ -129,7 +129,7 @@ export default class HeadInfoView extends Component {
     render() {
         let that = this;
 
-        that.lastReadBook = that.props.lastBook;
+        that.lastReadBook = that.props.rootStore.bookCaseDataBean.lastReadBook;
         return (
             <View style={{ height: Dpi.d(450), width: AppUtils.size.width }}>
                 <FastImage

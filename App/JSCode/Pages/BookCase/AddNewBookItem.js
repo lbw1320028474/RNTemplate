@@ -15,7 +15,6 @@ import {
 } from 'react-native'
 import { observable, computed, action, autorun } from 'mobx'
 import { observer, inject } from 'mobx-react/native'
-import { NavigationBar } from 'teaset'
 import FastImage from 'react-native-fast-image'
 import ImageResource from '../../../Resource/ImageResource'
 import Dpi from '../../Utils/Dpi'
@@ -23,7 +22,6 @@ import AppUtils from '../../Utils/AppUtils'
 import AppTheme from '../../Themes/AppTheme';
 import LastReadBean from './Data/LastReadBean';
 import BookBean from './Data/BookBean'
-//import NavigationBar from './NavigationBar'
 /**
  * 书架页面
  */
@@ -48,7 +46,7 @@ export default class AddNewBookItem extends Component {
                     let bookBean = new BookBean();
                     bookBean.bookName = "麦田里的守望者"
                     bookBean.bookCover = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521737908503&di=6b7840789d49493bbf8e29c3251faf5f&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fzhidao%2Fwh%253D450%252C600%2Fsign%3Dfe5ba490e6fe9925cb596154019872e9%2F6159252dd42a2834f0e98a5e5db5c9ea15cebf1c.jpg";
-                    that.props.rootStore.bookCaseList.push(bookBean);
+                    that.props.rootStore.bookCaseDataBean.bookCaseList.push(bookBean);
                 }}
                 style={{
                     marginVertical: Dpi.d(30),

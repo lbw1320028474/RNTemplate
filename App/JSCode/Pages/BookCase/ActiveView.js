@@ -13,7 +13,6 @@ import {
 } from 'react-native'
 import { observable, computed, action, autorun } from 'mobx'
 import { observer, inject } from 'mobx-react/native'
-import { NavigationBar } from 'teaset'
 import FastImage from 'react-native-fast-image'
 import ImageResource from '../../../Resource/ImageResource'
 import Dpi from '../../Utils/Dpi'
@@ -74,47 +73,6 @@ export default class ActiveView extends Component {
                 <Text style={{ padding: Dpi.d(5), fontSize: Dpi.s(24), backgroundColor: AppTheme.bgColor, color: AppTheme.hightLightColor, borderRadius: Dpi.d(20) }}>去签到</Text>
             </View>
         )
-        // let that = this;
-        // // var spin = null;
-        // // spin = this.state.translateY.interpolate({
-        // //     inputRange: [0, 1],
-        // //     outputRange: [Dpi.d(530), 0]
-        // // })
-        // that.lastReadBook = that.props.lastBook;
-        // return (
-        //     <View style={{ height: Dpi.d(450), width: AppUtils.size.width }}>
-        //         <FastImage
-        //             style={{ height: Dpi.d(450), width: AppUtils.size.width }}
-        //             source={ImageResource.bookCaseHeadBg}
-        //         />
-        //         <Animated.View
-        //             style={{ position: 'absolute', bottom: 0, transform: [{ translateX: that.state.translateX }] }}
-        //         >
-        //             <FastImage
-        //                 style={{ height: Dpi.d(50), width: AppUtils.size.width * 2, resizeMode: 'stretch' }}
-        //                 source={ImageResource.testBookCover}>
-
-        //             </FastImage>
-        //         </Animated.View>
-        //         <View
-        //             style={{ flexDirection: 'row', alignItems: 'center', position: 'absolute', left: Dpi.d(30), top: Dpi.d(150) }}
-        //         >
-        //             <FastImage
-        //                 style={{ height: Dpi.d(250), width: Dpi.d(180), resizeMode: 'stretch' }}
-        //                 source={ImageResource.testBookCover}
-        //             >
-
-        //             </FastImage>
-        //             <View
-        //                 style={{ padding: Dpi.d(20) }}
-        //             >
-        //                 <Text style={{ color: AppTheme.mainColor, fontSize: Dpi.s(30) }}>{that.lastReadBook.bookName}</Text>
-        //                 <Text style={{ color: AppTheme.mainColor, fontSize: Dpi.s(28), marginTop: Dpi.d(30) }}>{that.lastReadBook.lastChapterName} 继续阅读</Text>
-        //             </View>
-        //         </View>
-
-        //     </View >
-        // );
     }
 }
 

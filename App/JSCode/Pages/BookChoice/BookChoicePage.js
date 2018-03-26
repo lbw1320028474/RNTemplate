@@ -19,7 +19,6 @@ export default class BookChoicePage extends Component {
   render() {
     return (
       <View>
-        <NavigationBar statusBarStyle='light-content' statusBarInsets={true} style={{ position: 'relative' }} title='Teaset' />
         <Text>这是页面精选页面</Text>
       </View>
     );
