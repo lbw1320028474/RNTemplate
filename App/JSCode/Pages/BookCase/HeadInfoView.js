@@ -133,8 +133,7 @@ export default class HeadInfoView extends Component {
         return (
             <View style={{ height: Dpi.d(450), width: AppUtils.size.width }}>
                 <FastImage
-                    resizeMode={FastImage.resizeMode.stretch}
-                    style={{ height: Dpi.d(450), width: AppUtils.size.width }}
+                    style={{ resizeMode: FastImage.resizeMode.stretch, height: Dpi.d(450), width: AppUtils.size.width }}
                     source={ImageResource.bookCaseHeadBg}
                 />
                 {
@@ -144,8 +143,8 @@ export default class HeadInfoView extends Component {
                     style={{ flexDirection: 'row', alignItems: 'center', position: 'absolute', left: Dpi.d(30), top: Dpi.d(150) }}
                 >
                     <FastImage
-                        resizeMode={FastImage.resizeMode.stretch}
-                        style={{ height: Dpi.d(250), width: Dpi.d(180), borderColor: AppTheme.mainColor, borderRadius: Dpi.d(4), borderWidth: Dpi.d(3) }}
+
+                        style={{ resizeMode: FastImage.resizeMode.stretch, height: Dpi.d(250), width: Dpi.d(180), borderColor: AppTheme.mainColor, borderRadius: Dpi.d(4), borderWidth: Dpi.d(3) }}
                         source={{ uri: that.lastReadBook.bookCover }}
                     >
 

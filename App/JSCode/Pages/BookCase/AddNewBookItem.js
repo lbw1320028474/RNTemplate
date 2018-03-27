@@ -57,8 +57,8 @@ export default class AddNewBookItem extends Component {
                 }}
             >
                 <FastImage
-                    resizeMode={FastImage.resizeMode.stretch}
                     style={{
+                        resizeMode: FastImage.resizeMode.stretch,
                         width: Dpi.d(158),
                         height: Dpi.d(227)
                     }}

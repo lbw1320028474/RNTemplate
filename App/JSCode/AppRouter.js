@@ -66,12 +66,13 @@ export default class AppRouter extends Component {
                     hideNavBar={true}
                     key='rootTabView'>
                     <Tabs
+                        showLabel={true}
                         activeTintColor={AppTheme.hightLightColor}
                         ref={ref => that.tabBarRef = ref}
                         animationEnabled={false}
                         key='tabBar'
                         wrap={true}
-                        showLabel={false}
+                        showLabel={true}
                         swipeEnabled={true}
                         headerMode='none'
                         icon={Tabicon}

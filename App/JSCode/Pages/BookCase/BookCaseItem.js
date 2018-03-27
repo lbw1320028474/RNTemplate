@@ -106,12 +106,13 @@ export default class BookCaseItem extends Component {
                     setting={shadowOpt}
                 >
                     <FastImage
-                        resizeMode={FastImage.resizeMode.stretch}
+
                         opacity={(that.props.rootStore.bookCaseDataBean.inSelect) ? 0.4 : 1}
                         onError={() => {
                             alert('加载失败')
                         }}
                         style={{
+                            resizeMode: FastImage.resizeMode.stretch,
                             width: Dpi.d(158),
                             height: Dpi.d(227)
                         }}
@@ -122,8 +123,8 @@ export default class BookCaseItem extends Component {
                 {
                     (that.props.rootStore.bookCaseDataBean.inSelect) ?
                         <FastImage
-                            resizeMode={FastImage.resizeMode.stretch}
                             style={{
+                                resizeMode: FastImage.resizeMode.stretch,
                                 width: Dpi.d(30),
                                 height: Dpi.d(30),
                                 position: 'absolute',
